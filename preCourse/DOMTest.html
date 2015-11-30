@@ -1,0 +1,30 @@
+<html>
+	<head>
+	</head>
+	<body id="body">
+		<form action="javascript:void(0);" id="exampleForm">
+			<input type = "password" id="examplePass" />
+			<input type = "submit" /> 
+		</form>
+	</body>
+
+	<script>
+		document.getElementById("exampleForm").onsubmit = function() {
+			var passwordRegex = /^[A-Za-z\d]{6,8}$/;
+
+		if(!passwordRegex.test(document.getElementById("examplePass").value)) {
+			console.log("Regex didn't match");
+			var notify = document.getElementById("notify");
+			if(notify === null) {
+				notify = document.createElement("p");
+				notify.textContent = "pass need to be ...";
+				notify.id = "notify";
+
+				var body = document.getElementById("body");
+				body.appendChild(notify);
+			}
+		}
+	};
+
+	</script>
+</html>

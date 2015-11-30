@@ -1,0 +1,11 @@
+var json = require('./test.json');
+
+console.log(json);
+console.log(typeof(json));
+
+var input = '{ "id": "input id", "number": 456}';
+
+var parsed = JSON.parse(input);
+
+console.log(parsed.id);
+console.log(parsed.number);
