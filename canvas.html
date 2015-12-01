@@ -1,0 +1,74 @@
+<html>
+	<head>Game Canvas</head>
+	<body id="body">
+		<canvas id="my_canvas"></canvas>
+	</body>
+
+	<script>
+		var canvas = null;
+		//var body = null;
+		var context = null;
+		var image = null;
+		var context = null;
+		var frameRate = 1000/30;
+		var frame = 0;
+		var frames = [];
+		var base= 'http://www.udacity.com/';
+
+		var assets = ['/media/js/standalone/libs/gamedev_assets/robowalk/robowalk00.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk01.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk02.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk03.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk04.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk05.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk06.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk07.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk08.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk09.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk10.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk11.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk12.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk13.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk14.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk15.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk16.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk17.png',
+			  '/media/js/standalone/libs/gamedev_assets/robowalk/robowalk18.png'
+			 ];
+
+		setup = function() {
+			//body = document.getElementById("body");
+			canvas = document.getElementById("my_canvas");
+			context = canvas.getContext('2d');
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+
+			for(var i=0; i<assets.length; i++) {
+				frames.push(new Image());
+				frames[i].onload = onImageLoad;
+				frames[i].src = base + assets[i];
+			}
+
+			setInterval(animate, frameRate);
+
+			// img = new Image();
+			// img.src = "https://www.udacity.com/media/js/standalone/libs/gamedev_assets/ralphyrobot.png";
+			// img.onload = onImageLoad;
+
+			//body.appendChild(canvas);
+		}
+
+		var animate = function() {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			context.drawImage(frames[frame], 192, 192);
+			frame = (frame + 1) % frames.length;
+		}
+
+		onImageLoad = function() {
+			console.log("Image loaded!");
+			//context.drawImage(img, 192, 192);
+		}
+
+		setup();
+	</script>
+</html>
